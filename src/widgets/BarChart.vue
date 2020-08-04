@@ -4,6 +4,7 @@
 <script>
 import echarts from 'echarts'
 require('echarts/theme/macarons')
+import { labelFormatter } from './chartUtils'
 
 export default {
   props: {
@@ -63,13 +64,6 @@ export default {
     handleResize() {
       if (this.chart) {
         this.chart.resize()
-      }
-    },
-    validateData(data) {
-      if (!Array.isArray(data)) {
-        this.$message({
-          message: '柱状图的数据格式必须为数组，请检查你的数据格式'
-        })
       }
     },
     renderChart(data) {
@@ -154,7 +148,7 @@ export default {
         },
         grid: {
           top: '10px',
-          left: '80px',
+          left: '45px',
           right: '0',
           bottom: '45px'
         },
@@ -183,7 +177,8 @@ export default {
         yAxis: {
           axisLabel: {
             show: true,
-            color: '#95a4bd'
+            color: '#95a4bd',
+            formatter: labelFormatter
           },
           axisLine: {
             lineStyle: {
